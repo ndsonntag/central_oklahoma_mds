@@ -1,0 +1,1 @@
+Place your notebooks in this folder, organizing each notebook to create *one* of your figures, and name the notebook with the following file name format "figure_n.ipynb". You can add "unit tests" in your notebook.
