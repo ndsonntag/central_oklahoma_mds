@@ -55,6 +55,7 @@ Given the tabular nature of the data collected, an RF model was determined to be
 
 ***Table 2: Base Model Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
+|--------------|-----------|-----------|-----------|-----------|
 | MDs          | 0.72      | 0.79      | 0.75      | 48        |
 | Watchs       | 0.77      | 0.69      | 0.73      | 49        |
 |              |           |           |           |           |
@@ -65,6 +66,7 @@ Given the tabular nature of the data collected, an RF model was determined to be
 
 ***Table 3: Optimized Model Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
+|--------------|-----------|-----------|-----------|-----------|
 | MDs          | 0.76      | 0.79      | 0.78      | 48        |
 | Watchs       | 0.79      | 0.76      | 0.77      | 49        |
 |              |           |           |           |           |
@@ -75,6 +77,7 @@ Given the tabular nature of the data collected, an RF model was determined to be
 
 ***Table 4: Final Tested Model Average Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
+|--------------|-----------|-----------|-----------|-----------|
 | MDs          |           |           |           | 105       |
 | Watchs       |           |           |           | 91        |
 |              |           |           |           |           |
