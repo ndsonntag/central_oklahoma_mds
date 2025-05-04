@@ -1,0 +1,23 @@
+To access the complete dataset and Random Forest model designs used for this project, copy and paste the following url:
+https://niuits-my.sharepoint.com/:f:/g/personal/z2038674_students_niu_edu/Eh4X4sc_YSFPmHMJj6OonBkBCCv_xvVBLL9a2bdqcKs1_g?e=yxlBaQ
+
+Depending on what step in preprocessing starting at, a different file will need to be downloaded.
+
+If starting at Mesoscale Discussion data filering (01_md_scraper.ipynb), download:
+https://niuits-my.sharepoint.com/:x:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/central_ok_mds.csv?d=w51b1dbfc9184413ca4fcb4546266253a&csf=1&web=1&e=Atao6N
+
+If starting at RAP analysis environmental variable processing (04_rap_analysis_automated.ipynb), download:
+https://niuits-my.sharepoint.com/:x:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/central_ok_mds_FINAL.csv?d=w7e2f2fb26a0c4f6b881866e60932bb4b&csf=1&web=1&e=1NexdY
+
+For figures 2-9 or random forest model generator (13_random_forest_model_metrics.ipynb), download:
+https://niuits-my.sharepoint.com/:x:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/central_ok_mds_FINAL.csv?d=w7e2f2fb26a0c4f6b881866e60932bb4b&csf=1&web=1&e=1NexdY
+
+For figures 10, 11, and 12, download:
+https://niuits-my.sharepoint.com/:x:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/central_ok_mds_FINAL.csv?d=w7e2f2fb26a0c4f6b881866e60932bb4b&csf=1&web=1&e=1NexdY
+https://niuits-my.sharepoint.com/:u:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/random_forest_base.joblib?csf=1&web=1&e=Xh5MVi
+https://niuits-my.sharepoint.com/:u:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/random_forest_opt.joblib?csf=1&web=1&e=laQ85e
+
+For figures 13
+https://niuits-my.sharepoint.com/:x:/r/personal/z2038674_students_niu_edu/Documents/central_oklahoma_mds/central_ok_mds_FINAL.csv?d=w7e2f2fb26a0c4f6b881866e60932bb4b&csf=1&web=1&e=1NexdY
+
+***Each file needs to be located in THE SAME DIRECTORY as the Jupyterhub Python script that uses that model design or csv file***  
