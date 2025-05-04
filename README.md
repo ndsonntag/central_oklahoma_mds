@@ -21,7 +21,10 @@ The second group of data to be acquired is the atmospheric data that will be use
 ### Methodology
 #### a. Data Preprocessing
 
-During the filtering of SPC products over central Oklahoma, products were also filtered by product type (either as an MD or as a watch). This was done to create the two ‘labels’ that the ML model will try to predict based on the average environmental variables obtained from RAP analysis. Once the climatology of SPC products was obtained and filtered, each product was environmentally analyzed using RAP analysis obtained from the National Center for Environmental Information Thredds server (https://www.ncei.noaa.gov/thredds/catalog.html). For each product, a total of 14 variables were obtained directly from the RAP analysis itself or calculated using MetPy functions (https://unidata.github.io/MetPy/latest/index.html). The selection of the 14 variables follows closely to those used in a severe weather prediction Random Forest (RF) model produced by Hill et al. (2020) and are listed in Table 1. Each of these variables were averaged over all grid points within a 60-km radius of downtown Oklahoma City and filtered to not include any grid points that have a composite reflectivity of 30 dBz or greater. Furthermore, if a file was either missing variables or missing entirely from the Thredds database, that product was filtered out of the final dataset for ML training and testing. 
+During the filtering of SPC products over central Oklahoma, products were also filtered by product type (either as an MD or as a watch). This was done to create the two ‘labels’ that the ML model will try to predict based on the average environmental variables obtained from RAP analysis. Once the climatology of SPC products was obtained and filtered, each product was environmentally analyzed using RAP analysis obtained from the National Center for Environmental Information Thredds server (https://www.ncei.noaa.gov/thredds/catalog.html). For each product, a total of 14 variables were obtained directly from the RAP analysis itself or calculated using MetPy functions (https://unidata.github.io/MetPy/latest/index.html). The selection of the 14 variables follows closely to those used in a severe weather prediction Random Forest (RF) model produced by Hill et al. (2020) and are listed in Table 1. Each of these variables were averaged over all grid points within a 60-km radius of downtown Oklahoma City and filtered to not include any grid points that have a composite reflectivity of 30 dBz or greater (Fig. 1). Furthermore, if a file was either missing variables or missing entirely from the Thredds database, that product was filtered out of the final dataset for ML training and testing. 
+
+![alt text](images/figure_01.jpg)
+> Domain of study area centered over Oklahoma City with a 60 km radius
 
 ***Table 1: Environmental Variables and Acronyms***
 
@@ -53,37 +56,76 @@ Given the tabular nature of the data collected, an RF model was determined to be
 
 #### c. Random Forest Model Analysis
 
+
+
 ***Table 2: Base Model Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
 |--------------|-----------|-----------|-----------|-----------|
 | MDs          | 0.72      | 0.79      | 0.75      | 48        |
 | Watchs       | 0.77      | 0.69      | 0.73      | 49        |
 |              |           |           |           |           |
-| Accuracy     |           |           | 0.74      | 97        |
 | Macro Avg    | 0.74      | 0.74      | 0.74      | 97        |
 | Weighted Avg | 0.75      | 0.74      | 0.74      | 97        |
+|              |           |           |           |           |
+| Accuracy     |           |           | 0.74      | 97        |
+| Brier Score  |           |           | 0.2577    | 97        |
 
 
-***Table 3: Optimized Model Classification Report***
+
+***Table 3: Configuration of Optimized Random Forest Model***
+| Parameter         |          |
+|-------------------|--------- |
+| criterion         | log loss |
+| max depth         | 16       |
+| min samples leaf  | 6        |
+| min samples split | 4        |
+| num estimators    | 40       |
+
+
+
+***Table 4: Optimized Model Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
 |--------------|-----------|-----------|-----------|-----------|
 | MDs          | 0.76      | 0.79      | 0.78      | 48        |
 | Watchs       | 0.79      | 0.76      | 0.77      | 49        |
 |              |           |           |           |           |
-| Accuracy     |           |           | 0.77      | 97        |
 | Macro Avg    | 0.77      | 0.77      | 0.77      | 97        |
 | Weighted Avg | 0.77      | 0.77      | 0.77      | 97        |
-
-
-***Table 4: Final Tested Model Average Classification Report***
-|              | Precision | Recall    | F1-Score  | Support   |
-|--------------|-----------|-----------|-----------|-----------|
-| MDs          |           |           |           | 105       |
-| Watchs       |           |           |           | 91        |
 |              |           |           |           |           |
-| Accuracy     |           |           |           | 196       |
-| Macro Avg    |           |           |           | 196       |
-| Weighted Avg |           |           |           | 196       |
+| Accuracy     |           |           | 0.77      | 97        |
+| Brier Score  |           |           | 0.2268    | 97        |
+
+
+![alt text](images/figure_10.jpg)
+> Validation confusion matrices for the base (left) and optimized (right) Random Forest models
+
+
+![alt text](images/figure_11.jpg)
+> Validation ROC curves for the base (blue) and optimized (red) Random Forest models
+
+
+![alt text](images/figure_12.jpg)
+> Validation prediction probabilities for the base (left) and optimized (right) Random Forest models
+
+
+
+***Table 5: Final Perturbed Tested Model Classification Report with Confidence Intervals***
+|              | Precision      | Recall         | F1-Score       | Support |
+|--------------|----------------|----------------|----------------|---------|
+| MDs          | 0.734 ± 0.013  | 0.666 ± 0.016  | 0.697 ± 0.011  | 105     |
+| Watchs       | 0.650 ± 0.011  | 0.722 ± 0.019  | 0.685 ± 0.012  | 91      |
+|              |                |                |                |         |
+| Macro Avg    | 0.692 ± 0.011  | 0.692 ± 0.011  | 0.690 ± 0.011  | 196     |
+| Weighted Avg | 0.693 ± 0.010  | 0.690 ± 0.011  | 0.690 ± 0.011  | 196     |
+|              |                |                |                |         |
+| Accuracy     |                |                | 0.690 ± 0.011  | 196     |
+| Brier Score  |                |                | 0.309 ± 0.011  | 196     |
+
+
+
+
+![alt text](images/figure_13.jpg)
+> Testing  variable importance in percentage / 100 with standard deviations for perturbed optimized 
 
 ### Conclusion
 
