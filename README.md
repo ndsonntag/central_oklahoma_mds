@@ -2,6 +2,21 @@
 
 Authors: Nathan Sonntag and Tyson Stewart
 
+### Required (and Tested) Packages
+- cartopy 0.21.1
+- csv 1.0
+- geopandas 0.11.0
+- joblib 1.1.0
+- matplotlib 3.5.1
+- metpy 1.3.1
+- numpy 1.21.5
+- pandas 1.5.3
+- scipy 1.9.1
+- seaborn 0.12.2
+- sklearn 1.1.1
+- urllib3 1.26.9
+- xarray 0.20.1
+
 ### Introduction
 
 Within meteorological spaces, there has been an increasing amount of discussion as to how, if at all, machine learning (ML) models can be incorporated into research and forecasting operations. While most of this effort has come to fruition in the form of ML-enhanced numerical models (Lam et al. 2023; Price et al. 2024), research has been limited regarding the use of ML models to help with nowcasting operations. This project seeks to remedy some of these deficiencies by developing an ML model with the goal of predicting whether a severe weather watch will be issued for a given region or not. By doing this, we hope that this can serve as a potential proof of concept towards future models that can help forecasters nowcast areas of concern.
@@ -248,35 +263,35 @@ if null_flag == 0:
 | Status | ✅ Complete ✅ | |
 | Unit Test | | 
 ```
-def rap13_great_circle(rap_ds, lat, lon, radius):
-
-    # Convert RAP coordinate units and input latitude and longitude to radians
-    rap_lat = rap_ds.latitude * (np.pi/180)
-    rap_lon = rap_ds.longitude * (np.pi/180)
-            
-    lat, lon = map(radians, [lat, lon])
-
-    # Create variable for number of grid points within 60km of input latitude and longitude
-    num_points = 0
+def great_circle_test(test_rap_ds):
+    '''Test that great circle function generates the correct number of points'''
     
-    # Create arrays for grid points within 60km of input latitude and longitude
-    grid_points_x = []
-    grid_points_y = []
+    # Set lat, lon, radius, and constants (do not edit)
+    test_num_points = 0
+    test_lat = 35
+    test_lon = -100
+    test_radius = 10
+    
+    # Convert RAP coordinate units and input latitude and longitude to radians
+    test_rap_lat = test_rap_ds.latitude * (np.pi/180)
+    test_rap_lon = test_rap_ds.longitude * (np.pi/180)
+    test_lat, test_lon = map(radians, [test_lat, test_lon])
     
     # Create array so distance calculation works over entirety of RAP analysis domain
-    distance = np.zeros((337, 451))
-        
-    # Calculate great-circle distance equation in km
-    for i in range(len(rap_ds.latitude)):
-        for j in range(len(rap_ds.latitude[i])):
-            distance[i,j] = 6371 * (acos(sin(lat) * sin(rap_lat[i,j]) + cos(lat) * cos(rap_lat[i,j]) * cos(lon - rap_lon[i,j])))
-            if distance[i,j] <= radius:
-                grid_points_y.append(i)
-                grid_points_x.append(j)
-                num_points += 1
+    test_distance = np.zeros((337, 451))
     
-    # Return desired outputs
-    return grid_points_x, grid_points_y, num_points
+    # Calculate great-circle distance equation in km
+    for i in range(len(test_rap_ds.latitude)):
+        for j in range(len(test_rap_ds.latitude[i])):
+            test_distance[i,j] = 6371 * (acos(sin(test_lat) * sin(test_rap_lat[i,j]) + cos(test_lat) * cos(test_rap_lat[i,j]) * cos(test_lon - test_rap_lon[i,j])))
+            if test_distance[i,j] <= test_radius:
+                test_num_points += 1
+                
+    # Output error if calculation produces incorrect output
+    if (test_num_points == 2):
+        pass
+    else:
+        sys.exit('❌ Error. Calculation not valid. Possible error with RAP grid.')
 ```
 
 | PR-04  | Download RAP Analysis Data   
