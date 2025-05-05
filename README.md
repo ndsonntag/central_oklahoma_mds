@@ -55,20 +55,24 @@ Given the tabular nature of the data collected, an RF model was determined to be
 Given that the values using in this study were extracted straight from RAP analysis itself, the data used in the RF model should be valid. However, since the focus of this study is on severe weather discussions and watch issued over central Oklahoma, validation that parameters fit into the general severe weather climatology of the region is still needed.
 
 ![alt text](images/figure_02.jpg)
+> Figure 2:  Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) year of issuance, (b) month of issuance, (c) day of issuance, and (d) hour of issuance
 
-In the analysis of the temporal distribution of the entire SPC mesoscale discussions and watches combined, the climatology makes sense from a meteorological perspective. From a monthly perspective, the three months with the greatest number of total SPC products are April, May, and June, which is the period of the year with the greatest severe weather frequency in Oklahoma, thus making climatological sense (Fig. 1b). Likewise, the frequency of product issuance, at an hourly level, peaks in the afternoon and early evening hours, also matching well with severe storm climatology (Fig. 1d). Differences at the yearly (Fig. 1a) and daily (Fig. 1c) temporal scales are minimal with respect to SPC products, also indicating that the ML dataset is acceptable from a temporal standpoint with respect to severe weather. 
+In the analysis of the temporal distribution of the entire SPC mesoscale discussions and watches combined, the climatology makes sense from a meteorological perspective. From a monthly perspective, the three months with the greatest number of total SPC products are April, May, and June, which is the period of the year with the greatest severe weather frequency in Oklahoma, thus making climatological sense (Fig. 2b). Likewise, the frequency of product issuance, at an hourly level, peaks in the afternoon and early evening hours, also matching well with severe storm climatology (Fig. 2d). Differences at the yearly (Fig. 2a) and daily (Fig. 2c) temporal scales are minimal with respect to SPC products, also indicating that the ML dataset is acceptable from a temporal standpoint with respect to severe weather. 
 
 ![alt text](images/figure_03.jpg)
+> Figure 3: Box plots of average (a) mean sea level pressure, (b) 2-m temperature, (c) 2-m specific humidity, (d) 2-m relative humidity, and (e) precipitable water of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-Given the context of the temporal distribution of SPC products over central Oklahoma, the average background environment also makes meteorological sense. The distribution of mean sea-level pressure leans towards more mesoscale features being the cause of many of the SPC products, agreeing with the severe weather climatology of the region (Fig. 2a). Likewise, the 2-m temperature distribution fits the monthly trend of SPC products (Fig. 2b). In terms of environmental moisture, moist levels of surface specific humidity (Fig. 2c.), relative humidity (Fig. 2d), and precipitable water (Fig. 2e) are conducive for clouds and storms to develop. 
+Given the context of the temporal distribution of SPC products over central Oklahoma, the average background environment also makes meteorological sense. The distribution of mean sea-level pressure leans towards more mesoscale features being the cause of many of the SPC products, agreeing with the severe weather climatology of the region (Fig. 3a). Likewise, the 2-m temperature distribution fits the monthly trend of SPC products (Fig. 3b). In terms of environmental moisture, moist levels of surface specific humidity (Fig. 3c.), relative humidity (Fig. 3d), and precipitable water (Fig. 3e) are conducive for clouds and storms to develop. 
 
 ![alt text](images/figure_04.jpg)
+> Figure 4: Box plots of average (a) u-component of 10-m wind, (b) v-component of 10-m wind, (c) 10-m wind speed, (d) lifted condensation pressure level, and (e) 0-6 km bulk shear of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-While 10-m wind and its components (Fig. 3a-c) by themselves don’t offer much in terms of severe weather verification, the values are still reasonable for surface winds and, therefore, can still useful combined with and into other variables for training and testing the RF model. Lifted condensation level (LCL) values are relatively low in the atmosphere based on their distribution, which fits well with severe weather conditions as lower LCLs are beneficial especially for tornadic storms (Fig. 3d). The wide range in 0-6 km bulk shear is expected, due to the importance of shear in determining storm type (Fig. 3e). The bulk of the distribution for the bulk shear was favorable for organized multicell storms which fits the typical storm climatology of the region.
+While 10-m wind and its components (Fig. 4a-c) by themselves don’t offer much in terms of severe weather verification, the values are still reasonable for surface winds and, therefore, can still useful combined with and into other variables for training and testing the RF model. Lifted condensation level (LCL) values are relatively low in the atmosphere based on their distribution, which fits well with severe weather conditions as lower LCLs are beneficial especially for tornadic storms (Fig. 4d). The wide range in 0-6 km bulk shear is expected, due to the importance of shear in determining storm type (Fig. 4e). The bulk of the distribution for the bulk shear was favorable for organized multicell storms which fits the typical storm climatology of the region.
 
 ![alt text](images/figure_05.jpg)
+> Figure 5: Box plots of average (a) surface-based CAPE, (b) surface-based CIN, (c) 0-3 km storm relative helicity, and (d) 0-1 km storm relative helicity of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-Moderate CAPE value distribution typically less than 3000 J/kg but more than 750 J/kg makes climatological sense as most SPC products are issued before severe weather occurs (Fig. 4a). Nevertheless, severe weather is possible within this distribution of CAPE and therefore, fits the climatology the dataset desires to capture. The same is true for CIN (Fig. 4b). While the surface-based CIN values are non-zero, the general distribution shows they are minimal enough for the cap to be broken and for convection and severe weather to occur. Finally, for both levels of storm relative helicity (SRH), the distribution of values suggests a mixture of storm modes are possible, including those that could produce tornadoes. All these distributions match the climatology that is desired from this dataset, and, therefore, the dataset should service the desired purpose of separating SPC product types for severe weather. 
+Moderate CAPE value distribution typically less than 3000 J/kg but more than 750 J/kg makes climatological sense as most SPC products are issued before severe weather occurs (Fig. 5a). Nevertheless, severe weather is possible within this distribution of CAPE and therefore, fits the climatology the dataset desires to capture. The same is true for CIN (Fig. 5b). While the surface-based CIN values are non-zero, the general distribution shows they are minimal enough for the cap to be broken and for convection and severe weather to occur. Finally, for both levels of storm relative helicity (SRH), the distribution of values suggests a mixture of storm modes are possible, including those that could produce tornadoes. All these distributions match the climatology that is desired from this dataset, and, therefore, the dataset should service the desired purpose of separating SPC product types for severe weather. 
 
 #### b. Environmental Comparison Between Mesoscale Discussions and Watches
 
@@ -179,10 +183,8 @@ We identified the following requirements for this project (note some requirement
 | Acceptance Criteria/Requirements | |
 | | 1. Climatology dataset must include data for the intended 11-year period (2014-2024)|.
 | | 2. Dataset must be in a format that can be easily read and modified either via Python or through software such as QGIS or ArcGIS.|
-| Automatic Test | | 
-| | Create a script that tests for a series of conditions. First, test that the dataset contains data for the necessary time period (2013-2024). Finally, check that all data is present and that no critical values are missing. If either of these conditions fail, generate an error so that the issue can be examined.|
 | Status | ✅ Complete ✅
-|| (Test performed via ArcGIS Pro's tools, not via a script) | 
+|| (Validation performed via ArcGIS Pro's tools, not via a script) | 
 
 | PR-02  | Analyze Mesoscale Discussion Climatology   
 |---------|------------| 
@@ -194,11 +196,29 @@ We identified the following requirements for this project (note some requirement
 | | 1. Dataset must categorize each mesoscale discussion (MD) based upon the relevant severe weather type that the MD is for (tornado, severe thunderstorm, flooding, etc.). Storm type data will be acquired via the SPC mesoscale discussion archive provided by the Iowa Environmental Mesonet (IEM).|
 | | 2. Dataset must also indicate MD discussion severity as the percentage of likelihood of a watch being issued. Said data will also be acquired via the SPC mesoscale discussion archive provided by IEM.|
 | | 3. Resulting dataset must be converted into a csv file to be used in our ML model.|
-| Automatic Test | | 
-| | Create a script that checks that all data is present and that no critical values are missing. If either of these conditions fail, generate an error so that the issue can be examined.|
-| Status | ✅ Complete ✅ | 
+| Status | ✅ Complete ✅ | |
+| Unit Test | | 
 
-| PR-03.A  | Download RAP Analysis Data   
+```
+sub_csv.reset_index(drop=True, inplace=True)
+
+key_list = list(sub_csv.keys())
+
+# Flag variable to raise if a null value is detected
+null_flag = 0
+
+#Test each key to ensure all data is present
+for i in key_list:
+    for j in range(0, (len(sub_csv[i]) - 1)):
+        if sub_csv.loc[j, i] == "NaN" or sub_csv.loc[j, i] == "Null" or sub_csv.loc[j, i] == None:
+            null_flag = 1
+            print(f"NULL VALUE DETECTED AT INDEX {j}!")
+
+if null_flag == 0:
+    print("No null values detected. Check passed.")
+```
+
+| PR-03  | Download RAP Analysis Data   
 |---------|------------| 
 | Priority | High |
 | Sprint | 2 |
@@ -208,55 +228,72 @@ We identified the following requirements for this project (note some requirement
 | | 1. Downloaded files must be in grib2 format and/or readable into model scripts|
 | | 2. Downloaded files must contain Central Oklahoma as a part of their domain|
 | | 3. Downloaded files must those the closest time to the time the mesoscale discussion was issued |
-| Automatic Test | | 
-| | Create a script to test if a downloaded file is in grib2 format/readable. If the file is not in correct format, send an error.|
 | Status | ✅ Complete ✅ | 
+| Unit Test | | 
+```
+try:
+    # NCEI 13km RAP Non-Operational Archive (Long-Term)
+    urllib.request.urlretrieve(f"https://www.ncei.noaa.gov/thredds/fileServer/model-rap130anl-old/{year}{month}/{year}{month}{day}/rap_130_{year}{month}{day}_{hour}00_000.grb2", 
+        f"/home/scratch/nsonntag/eae598/rap_data/rap_130_{year}{month}{day}_{hour}00_000.grb2")
+    ds_avail_check = 1
+    except:
+        try:
+            # NCEI 13km RAP Operational Archive (Short-Term)
+            urllib.request.urlretrieve(f"https://www.ncei.noaa.gov/thredds/fileServer/model-rap130anl/{year}{month}/{year}{month}{day}/rap_130_{year}{month}{day}_{hour}00_000.grb2", 
+                f"/home/scratch/nsonntag/eae598/rap_data/rap_130_{year}{month}{day}_{hour}00_000.grb2")
+            ds_avail_check = 1
+        except:
+            # Print Date and Message that Date Isn't Avalible in Archive
+            ds_avail_check = 0
+            print(f"{year}/{month}/{day}_{hour}00 ❌ RAP Analysis File Not Avalible in Dataset")
+```
 
-| PR-03.B  | Download RAP Forecast Data   
+| PR-04  | Gather variables from RAP analysis data
 |---------|------------| 
 | Priority | High |
 | Sprint | 2 |
 | Assigned To | Nathan |
-| User Story   | As a developer of a machine learning model, I need to gather a forecast data set so I can eventually test my model on. |                                                                                                                                       | 
-| Acceptance Criteria/Requirements | |
-| | 1. Downloaded files must be in grib2 format and/or readable into model scripts|
-| | 2. Downloaded files must contain Central Oklahoma as a part of their domain|
-| | 3. Downloaded files must be for the month of May in 2024|
-| | 4. Files must contain all 19 consecutive hours of forecast starting at model initialization|
-| | 5. Hour of model initialization must be either 0 or 12 UTC|
-| Automatic Test | | 
-| | Similarly to PR-03, test if the file is in grib2 format. If the file is not in the correct format, reject it.|
-| Status | ❌ Removed ❌
-|| (Use of RAP Forecast data for testing has been replaced with subset of RAP Analysis. For more info, see PR-06.) | 
-
-| PR-04.A  | Gather variables from RAP analysis data
-|---------|------------| 
-| Priority | High |
-| Sprint | 2 |
-| Assigned To | Nathan |
-| User Story   | As a developer of a machine learning model, I need to gather individual variables from my data set so I can train my model. |                                                                                                                                       | 
+| User Story   | As a developer of a machine learning model, I need to gather/calculate individual variables from my data set so I can train my model. |                                                                                                                                       | 
 | Acceptance Criteria/Requirements | |
 | | 1. Scripts must be able to read data files in grib2 format|
 | | 2. Scripts must be able to tell which data points are within 60 km of Oklahoma City|
 | | 3. Scripts must be able to read or calculate the determined atmospheric variable from the provided data|
-| Automatic Test | | 
-| | Create a script to run through each of the required variables needed and ensure that data for each is present and complete. If any data is incomplete or missing, generate an error data is missing.|
-| Status | ✅ Complete ✅ | 
-
-| PR-04.B  | Gather variables from RAP forecast data
-|---------|------------| 
-| Priority | High |
-| Sprint | 2 |
-| Assigned To | Nathan |
-| User Story   | As a developer of a machine learning model, I need to gather individual variables from my data set so I can test my model after it is trained. |                                                                                                                                       | 
-| Acceptance Criteria/Requirements | |
-| | 1. Scripts must be able to read data files in grib2 format|
-| | 2. Scripts must be able to tell which data points are within 60 km of Oklahoma City|
-| | 3. Scripts must be able to read or calculate the determined atmospheric variable from the provided data|
-| Automatic Test | | 
-| | Create a script to run through each of the required variables needed and ensure that data for each is present and complete. If any data is incomplete or missing, generate an error data is missing.|
-| Status | ❌ Removed ❌
-|| (Use of RAP Forecast data for testing has been replaced with subset of RAP Analysis. For more info see PR-06) | 
+| Status | ✅ Complete ✅ |  
+| Unit Test | | 
+```
+tdef rap_variable_test(ds_raw_file, ds_mean_sea, ds_surface, ds_2m, ds_10m, ds_reflect, year, month, day, hour):
+    '''Test to make due each RAP analysis file has all desired variables'''
+    if ds_raw_file.get('PWAT_P0_L200_GLC0')[130, 200] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Precipitable Water Not Avalible in Dataset"
+    if ds_mean_sea.mslma[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Mean Sea Level Pressure Not Avalible in Dataset"
+    if ds_surface.sp[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Surface Pressure Not Avalible in Dataset"
+    if ds_surface.cape[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Surface Based CAPE Not Avalible in Dataset"
+    if ds_surface.cin[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Surface Based CIN Not Avalible in Dataset"
+    if ds_2m.t2m[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 2-m Temperature Not Avalible in Dataset"
+    if ds_2m.r2[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 2-m Relative Humidity Not Avalible in Dataset"
+    if ds_2m.sh2[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 2-m Specific Humidity Not Avalible in Dataset"
+    if ds_10m.u10[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 10-m U-Component Wind Not Avalible in Dataset"
+    if ds_10m.v10[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 10-m V-Component Wind Not Avalible in Dataset"
+    if ds_raw_file.get('VUCSH_P0_2L103_GLC0')[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km U-Component Wind Shear Not Avalible in Dataset"
+    if ds_raw_file.get('VVCSH_P0_2L103_GLC0')[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km V-Component Wind Shear Not Avalible in Dataset"
+    if ds_raw_file.get('HLCY_P0_2L103_GLC0')[0][130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-1 km Storm Relative Helicity Not Avalible in Dataset"
+    if ds_raw_file.get('HLCY_P0_2L103_GLC0')[1][130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-3 km Storm Relative Helicity Not Avalible in Dataset"
+    if ds_reflect.refd[130, 230] == np.nan:
+        f"{year}/{month}/{day}_{hour}00 ⚠️ Composite Reflectivity Not Avalible in Dataset"
+```
 
 | PR-05  | Format RAP analysis data for RF model
 |---------|------------| 
@@ -270,6 +307,15 @@ We identified the following requirements for this project (note some requirement
 | Automatic Test | | 
 | | Create a script that reads the csv file and checks if all fields/data are present. If not, generate an error showing what is missing.|
 | Status | ✅ Complete ✅ | 
+|Unit Test ||
+```
+def csv_test(df):
+    '''Test to ensure all environmental data is in csv file and none is missing'''
+    if df.isnull().sum().all() == 0:
+        print('✅ Data is correctly read in and ready for training!')
+    else:
+        sys.exit('❌ Error. One or more values are missing. Please check csv file to remove any dates with incomplete environmental values.')
+```
 
 | PR-06  | Create Data Subsets for training, verification, and testing datasets
 |---------|------------| 
@@ -281,9 +327,13 @@ We identified the following requirements for this project (note some requirement
 | | 1. RAP dataset must be split into three separate datasets|
 | | 2. Each individual dataset must be appropriately scaled in terms of size (See the 70/10/20 rule established in class lecture notes) |
 | | 3. Datasets should roughly match overall distribution to confirm legitimacy and avoid biases |
-| Automatic Test | | 
-| | Create a script that generates a series of statistics regarding each dataset and compare. If dataset statistics do not reasonably match, revise the subsetting.|
 | Status | ✅ Complete ✅ | 
+| Unit Test ||
+```
+# Split data
+train_data, val_test_data = train_test_split(df, test_size = 0.3, random_state = 988)
+val_data, test_data = train_test_split(val_test_data, test_size = 0.6667, random_state = 988)
+```
 
 | PR-07  | Train/Validate RF model
 |---------|------------| 
@@ -294,26 +344,27 @@ We identified the following requirements for this project (note some requirement
 | Acceptance Criteria/Requirements | |
 | | 1. RF model framework should use scikit-learn framework|
 | | 2. Model output should be formatted in such a way as new atmospheric and environmental data can be plugged in, and model displays output |
-| Automatic Test | | 
-| | Create script that tests model output for desired output (i.e. watch percentage, possible hazard type etc.)|
 | Status | ✅ Complete ✅ | 
+| Unit Test ||
+```
+# Print classification report
+print('Classification report for classifier %s:\n%s\n'
+      % (rf, metrics.classification_report(expected, predicted)))
 
-| PR-08  | Format RAP forecast data for RF testing
-|---------|------------| 
-| Priority | Medium |
-| Sprint | 3 |
-| Assigned To | Nathan |
-| User Story   | As a developer of a machine learning model, I need to format the data and variables that I have gathered so I can input them into my model and test it. |                                                                                                                                       | 
-| Acceptance Criteria/Requirements | |
-| | 1. Data should be formatted in such a way that forecast model can read|
-| | 2. Data should contain identical variables as those that were used in model training |
-| | 3. Data should not contain any missing variables that may cause model to fail |
-| Automatic Test | | 
-| | Create a script that looks for variables that were used to train model in testing dataset and alerts if variables are missing.|
-| Status | ❌ Removed ❌
-|| (Use of RAP Forecast data for testing has been replaced with subset of RAP Analysis. For more info see PR-06) | 
+# Print brier score
+print(f'Brier score: {metrics.brier_score_loss(expected, predicted)}', end = '\n\n')
 
-| PR-09  | Test RF Model
+# Print feature importance precentages
+importances = rf.feature_importances_
+
+indices = np.argsort(importances)[::-1]
+
+for i in range(val_data[feature_list].values.shape[1]):
+    print('%d. (%s) feature %d (%f)' % (i+1, feature_list[indices[i]], indices[i], importances[indices[i]]))
+    
+```
+
+| PR-08  | Test RF Model
 |---------|------------| 
 | Priority | Medium |
 | Sprint | 3 |
@@ -326,3 +377,20 @@ We identified the following requirements for this project (note some requirement
 | Automatic Test | | 
 | | Create a script that generates statistical tables/visualizations (if necessary) to compare model outputs and SPC mesoscale discussions |
 | Status | ✅ Complete ✅ | 
+| Unit Test ||
+```
+# Print classification report
+print("Classification report for classifier %s:\n%s\n"
+      % (rf_opt, metrics.classification_report(expected, predicted)))
+
+# Print brier score
+print(f'Brier score: {metrics.brier_score_loss(expected, predicted)}', end = '\n\n')
+
+# Print feature importance precentages
+importances = rf_opt.feature_importances_
+
+indices = np.argsort(importances)[::-1]
+
+for i in range(val_data[feature_list].values.shape[1]):
+    print("%d. (%s) feature %d (%f)" % (i+1, feature_list[indices[i]], indices[i], importances[indices[i]]))
+```
