@@ -54,31 +54,49 @@ Given the tabular nature of the data collected, an RF model was determined to be
 
 Given that the values using in this study were extracted straight from RAP analysis itself, the data used in the RF model should be valid. However, since the focus of this study is on severe weather discussions and watch issued over central Oklahoma, validation that parameters fit into the general severe weather climatology of the region is still needed.
 
+In the analysis of the temporal distribution of the entire SPC mesoscale discussions and watches combined, the climatology makes sense from a meteorological perspective. From a monthly perspective, the three months with the greatest number of total SPC products are April, May, and June, which is the period of the year with the greatest severe weather frequency in Oklahoma, thus making climatological sense (Fig. 2b). Likewise, the frequency of product issuance, at an hourly level, peaks in the afternoon and early evening hours, also matching well with severe storm climatology (Fig. 2d). Differences at the yearly (Fig. 2a) and daily (Fig. 2c) temporal scales are minimal with respect to SPC products, also indicating that the ML dataset is acceptable from a temporal standpoint with respect to severe weather. 
+
 ![alt text](images/figure_02.jpg)
 > Figure 2:  Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) year of issuance, (b) month of issuance, (c) day of issuance, and (d) hour of issuance
 
-In the analysis of the temporal distribution of the entire SPC mesoscale discussions and watches combined, the climatology makes sense from a meteorological perspective. From a monthly perspective, the three months with the greatest number of total SPC products are April, May, and June, which is the period of the year with the greatest severe weather frequency in Oklahoma, thus making climatological sense (Fig. 2b). Likewise, the frequency of product issuance, at an hourly level, peaks in the afternoon and early evening hours, also matching well with severe storm climatology (Fig. 2d). Differences at the yearly (Fig. 2a) and daily (Fig. 2c) temporal scales are minimal with respect to SPC products, also indicating that the ML dataset is acceptable from a temporal standpoint with respect to severe weather. 
+Given the context of the temporal distribution of SPC products over central Oklahoma, the average background environment also makes meteorological sense. The distribution of mean sea-level pressure leans towards more mesoscale features being the cause of many of the SPC products, agreeing with the severe weather climatology of the region (Fig. 3a). Likewise, the 2-m temperature distribution fits the monthly trend of SPC products (Fig. 3b). In terms of environmental moisture, moist levels of surface specific humidity (Fig. 3c.), relative humidity (Fig. 3d), and precipitable water (Fig. 3e) are conducive for clouds and storms to develop. 
 
 ![alt text](images/figure_03.jpg)
 > Figure 3: Box plots of average (a) mean sea level pressure, (b) 2-m temperature, (c) 2-m specific humidity, (d) 2-m relative humidity, and (e) precipitable water of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-Given the context of the temporal distribution of SPC products over central Oklahoma, the average background environment also makes meteorological sense. The distribution of mean sea-level pressure leans towards more mesoscale features being the cause of many of the SPC products, agreeing with the severe weather climatology of the region (Fig. 3a). Likewise, the 2-m temperature distribution fits the monthly trend of SPC products (Fig. 3b). In terms of environmental moisture, moist levels of surface specific humidity (Fig. 3c.), relative humidity (Fig. 3d), and precipitable water (Fig. 3e) are conducive for clouds and storms to develop. 
+While 10-m wind and its components (Fig. 4a-c) by themselves don’t offer much in terms of severe weather verification, the values are still reasonable for surface winds and, therefore, can still useful combined with and into other variables for training and testing the RF model. Lifted condensation level (LCL) values are relatively low in the atmosphere based on their distribution, which fits well with severe weather conditions as lower LCLs are beneficial especially for tornadic storms (Fig. 4d). The wide range in 0-6 km bulk shear is expected, due to the importance of shear in determining storm type (Fig. 4e). The bulk of the distribution for the bulk shear was favorable for organized multicell storms which fits the typical storm climatology of the region.
 
 ![alt text](images/figure_04.jpg)
 > Figure 4: Box plots of average (a) u-component of 10-m wind, (b) v-component of 10-m wind, (c) 10-m wind speed, (d) lifted condensation pressure level, and (e) 0-6 km bulk shear of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-While 10-m wind and its components (Fig. 4a-c) by themselves don’t offer much in terms of severe weather verification, the values are still reasonable for surface winds and, therefore, can still useful combined with and into other variables for training and testing the RF model. Lifted condensation level (LCL) values are relatively low in the atmosphere based on their distribution, which fits well with severe weather conditions as lower LCLs are beneficial especially for tornadic storms (Fig. 4d). The wide range in 0-6 km bulk shear is expected, due to the importance of shear in determining storm type (Fig. 4e). The bulk of the distribution for the bulk shear was favorable for organized multicell storms which fits the typical storm climatology of the region.
+Moderate CAPE value distribution typically less than 3000 J/kg but more than 750 J/kg makes climatological sense as most SPC products are issued before severe weather occurs (Fig. 5a). Nevertheless, severe weather is possible within this distribution of CAPE and therefore, fits the climatology the dataset desires to capture. The same is true for CIN (Fig. 5b). While the surface-based CIN values are non-zero, the general distribution shows they are minimal enough for the cap to be broken and for convection and severe weather to occur. Finally, for both levels of storm relative helicity (SRH), the distribution of values suggests a mixture of storm modes are possible, including those that could produce tornadoes. All these distributions match the climatology that is desired from this dataset, and, therefore, the dataset should service the desired purpose of separating SPC product types for severe weather. 
 
 ![alt text](images/figure_05.jpg)
 > Figure 5: Box plots of average (a) surface-based CAPE, (b) surface-based CIN, (c) 0-3 km storm relative helicity, and (d) 0-1 km storm relative helicity of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024
 
-Moderate CAPE value distribution typically less than 3000 J/kg but more than 750 J/kg makes climatological sense as most SPC products are issued before severe weather occurs (Fig. 5a). Nevertheless, severe weather is possible within this distribution of CAPE and therefore, fits the climatology the dataset desires to capture. The same is true for CIN (Fig. 5b). While the surface-based CIN values are non-zero, the general distribution shows they are minimal enough for the cap to be broken and for convection and severe weather to occur. Finally, for both levels of storm relative helicity (SRH), the distribution of values suggests a mixture of storm modes are possible, including those that could produce tornadoes. All these distributions match the climatology that is desired from this dataset, and, therefore, the dataset should service the desired purpose of separating SPC product types for severe weather. 
-
 #### b. Environmental Comparison Between Mesoscale Discussions and Watches
+
+Analysis of the temporal properties of all SPC products divided by either watch or MD displayed some interesting trends. For both divisions by year and day, there was no clear trend between the two labels (Fig. 6a,c). However, for both the monthly and hourly temporal analysis, there was a clear seasonal and diurnal trend. For the monthly analysis, a large increase of watches occurred over the months of May and June, the climatologically most active severe weather months for this region (Fig. 6b). For a diurnal trend, MDs tended to occur earlier in the day compared to severe weather watches (Fig. 6d). This too makes both climatological and logistical sense as a MD is usually issued before a watch is issued.  
+
+![alt text](images/figure_06.jpg)
+> Figure 6:  Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) year of issuance, (b) month of issuance, (c) day of issuance, and (d) hour of issuance divided by SPC label
+
+For surface mean sea-level pressure, the watch label tended to have lower pressures than MDs, indicating that more watches occurred in lower pressures which are climatologically more associated with inclement weather (Fig. 7a). Severe weather watches were more likely than MDs at temperatures up to 30°C and warmer temperatures than that tended to have more MDs than watches (Fig. 7b). This fits well with the seasonal climatology of severe weather in central Oklahoma, with watches more likely in the late spring and early summer compared to the mid- to late-summer. While specific humidity (Fig. 7c) and precipitable water (Fig. 7e) doesn’t have a real trend between labels, higher relative humidities greater than 65% were associated with the watch label than MDs, making meteorological sense that as relative humidity increases, so does thunderstorm potential. 
+
+![alt text](images/figure_07.jpg)
+> Figure 7: Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) mean sea level pressure, (b) 2-m temperature, (c) 2-m specific humidity, (d) 2-m relative humidity, and (e) precipitable water divided by SPC label
+
+Focusing on wind, the only one of the three surface wind variables that seemed to have some type of trend between labels was the u-component (Fig. 8a). If wind direction was primarily negative (from the east), then the label was more likely to be a watch then an MD and vice versa if the direction was positive (from the west), likely due to an increase of directional shear as upper-level wind are usually westerly. For the lifted condensation level, there is a strong trend with lower LCLs more likely to produce watches than MCs, likely due to the importance of a low LCL in tornadogenesis (Fig. 8d). Furthermore, higher 0-6 km bulk shear values were more likely to be a watch than a MD due to the importance of that variable for supercells with dominate central Oklahoma’s climatological severe storm morphology. Finally, while CAPE and CIN showed no real difference between labels (Fig. 9a,b), storm relative helicity at both 0-3 km and 0-1km levels displayed that higher SRH values lead to more watches than MDs, likely due to the importance of the variable in tornadogenesis.  
+
+![alt text](images/figure_08.jpg)
+> Figure 8: Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) u-component of 10-m wind, (b) v-component of 10-m wind, (c) 10-m wind speed, (d) lifted condensation pressure level, and (e) 0-6 km bulk shear divided by SPC label
+
+![alt text](images/figure_09.jpg)
+> Figure 9: Histograms of distributions of SPC mesoscale discussions and watches over central Oklahoma from 2014 to 2024 based on (a) surface-based CAPE, (b) surface-based CIN, (c) 0-3 km storm relative helicity, and (d) 0-1 km storm relative helicity divided by SPC label
 
 #### c. Random Forest Model Analysis
 
-The base RF model overall performed fairly well, given that no hyperparameters were used to tune the model. The overall accuracy for the model was 74% with a Brier score of 0.26, indicating that the base model has some predictive value, although those parameters do not condone use outside of a research setting since the model still predicted the incorrect label 25% of the time (Table 2). Analyzing the classification report more closely, recall had a higher percentage than precision for MDs, while the opposite was true for the watches label. This indicates that the model tended to produce false negatives or misses for the watch classification, while the model tended to produce false positives or false alarms for MDs. Given that there were only two labels in this analysis, this result was expected. Nevertheless, values above or only slightly below 70% for precision, recall, and f-score for both labels, indicate that this dataset did a good job at producing a result that differentiates between MDs and severe weather watches.
+The base RF model overall performed fairly well, given that no hyperparameters were used to tune the model. The overall accuracy for the model was 74% with a Brier score of 0.26, indicating that the base model has some predictive value, although those parameters do not condone use outside of a research setting since the model still predicted the incorrect label 25% of the time (Table 2). Analyzing the classification report more closely, recall had a higher percentage than precision for MDs, while the opposite was true for the watches label. This indicates that the model tended to produce false negatives or misses for the watch classification, while the model tended to produce false positives or false alarms for MDs. Given that there were only two labels in this analysis, this result was expected. Nevertheless, values above or only slightly below 70% for precision, recall, and f-score for both labels indicate that this dataset did a good job at producing a result that differentiates between MDs and severe weather watches.
 
 ***Table 2: Base Model Classification Report***
 |              | Precision | Recall    | F1-Score  | Support   |
@@ -149,7 +167,7 @@ Analyzing the features put into the RF models, the most important variable was t
 
 ### Conclusion
 
-This study examines the ability of a Random Forest model to predict if the Storm Prediction Center will issue either a mesoscale discussion or a severe weather watch across central Oklahoma. The study utilized an 11-year climatology of SPC MDs and watches differentiated between the two to create two labels, extracted their metadata, and then calculated environmental variables averaged over a 60-km radius of Oklahoma City. The tabular data is then analyzed both as an entire climatology and based on label before a Random Forest model is generated. The final model shows an ability to differentiate between MDs and watch, but in not accurate enough to be used with a substantial potential for error. The model also showcased the importance of the time (hour) of product issuance and as well as environmental variables important for determining supercellular environments. 
+This study examines the ability of a Random Forest model to predict if the Storm Prediction Center will issue either a mesoscale discussion or a severe weather watch across central Oklahoma. The study utilized an 11-year climatology of SPC MDs and watches differentiated between the two to create two labels, extracted their metadata, and then calculated environmental variables averaged over a 60-km radius of Oklahoma City. The tabular data is then analyzed both as an entire climatology and based on label before a Random Forest model is generated. The final model shows an ability to differentiate between MDs and watch, but it is not accurate enough to be used with a substantial potential for error. The RF model also showcased the importance of the time (hour) of product issuance and as well as environmental variables important for determining supercellular environments. Possible explanations for the decrease in metrics from the validation stage to the testing stage could be explained by either a lack of data to train the model on and/or the complexity of the product the model is trying to predict. While nearly 1000 SPC MDs and watches in a large number, a RF model may need substantially more data to create an accurate model, especially considering how complex weather thermodynamics and that MDs and watches can be subjective based on the person issuing them. For future work, an increase of the dataset size would be prudent to avoid potential overfitting and to try and encapsulate the complexity that is weather.  Future research could also try to take the techniques utilized in this project to other domain and regions of the United States, to determine if a model like this could be used in different severe weather climatologies.  
 
 
 ### References
@@ -217,8 +235,51 @@ for i in key_list:
 if null_flag == 0:
     print("No null values detected. Check passed.")
 ```
+| PR-03  | Find Area Over Where Analysis Takes Place  
+|---------|------------| 
+| Priority | High |
+| Sprint | 1 |
+| Assigned To | Nathan |
+| User Story   | As a developer, I need to create a script based on reading in a RAP analysis file with Xarray so I can use the Great Circle method to find data points within a certain great-circle distance of a desired geographic point. |                                                                                                                                       | 
+| Acceptance Criteria/Requirements | |
+| | 1. Xarray can successfully read in the grib2 file with RAP analysis data.|
+| | 2. Great-circle equation can successfilly takes latitude and longitude of geographic point and generates radius of desired distance around input geographic point.|
+| | 3. Output displayed states number and which grid points that fall within the desired radius.|
+| Status | ✅ Complete ✅ | |
+| Unit Test | | 
+```
+def rap13_great_circle(rap_ds, lat, lon, radius):
 
-| PR-03  | Download RAP Analysis Data   
+    # Convert RAP coordinate units and input latitude and longitude to radians
+    rap_lat = rap_ds.latitude * (np.pi/180)
+    rap_lon = rap_ds.longitude * (np.pi/180)
+            
+    lat, lon = map(radians, [lat, lon])
+
+    # Create variable for number of grid points within 60km of input latitude and longitude
+    num_points = 0
+    
+    # Create arrays for grid points within 60km of input latitude and longitude
+    grid_points_x = []
+    grid_points_y = []
+    
+    # Create array so distance calculation works over entirety of RAP analysis domain
+    distance = np.zeros((337, 451))
+        
+    # Calculate great-circle distance equation in km
+    for i in range(len(rap_ds.latitude)):
+        for j in range(len(rap_ds.latitude[i])):
+            distance[i,j] = 6371 * (acos(sin(lat) * sin(rap_lat[i,j]) + cos(lat) * cos(rap_lat[i,j]) * cos(lon - rap_lon[i,j])))
+            if distance[i,j] <= radius:
+                grid_points_y.append(i)
+                grid_points_x.append(j)
+                num_points += 1
+    
+    # Return desired outputs
+    return grid_points_x, grid_points_y, num_points
+```
+
+| PR-04  | Download RAP Analysis Data   
 |---------|------------| 
 | Priority | High |
 | Sprint | 2 |
@@ -243,12 +304,12 @@ try:
                 f"/home/scratch/nsonntag/eae598/rap_data/rap_130_{year}{month}{day}_{hour}00_000.grb2")
             ds_avail_check = 1
         except:
-            # Print Date and Message that Date Isn't Avalible in Archive
+            # Print Date and Message that Date Isn't Available in Archive
             ds_avail_check = 0
             print(f"{year}/{month}/{day}_{hour}00 ❌ RAP Analysis File Not Avalible in Dataset")
 ```
 
-| PR-04  | Gather variables from RAP analysis data
+| PR-05  | Gather variables from RAP analysis data
 |---------|------------| 
 | Priority | High |
 | Sprint | 2 |
@@ -284,18 +345,18 @@ tdef rap_variable_test(ds_raw_file, ds_mean_sea, ds_surface, ds_2m, ds_10m, ds_r
     if ds_10m.v10[130, 230] == np.nan:
         f"{year}/{month}/{day}_{hour}00 ⚠️ 10-m V-Component Wind Not Avalible in Dataset"
     if ds_raw_file.get('VUCSH_P0_2L103_GLC0')[130, 230] == np.nan:
-        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km U-Component Wind Shear Not Avalible in Dataset"
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km U-Component Wind Shear Not Available in Dataset"
     if ds_raw_file.get('VVCSH_P0_2L103_GLC0')[130, 230] == np.nan:
-        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km V-Component Wind Shear Not Avalible in Dataset"
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-6 km V-Component Wind Shear Not Available in Dataset"
     if ds_raw_file.get('HLCY_P0_2L103_GLC0')[0][130, 230] == np.nan:
-        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-1 km Storm Relative Helicity Not Avalible in Dataset"
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-1 km Storm Relative Helicity Not Available in Dataset"
     if ds_raw_file.get('HLCY_P0_2L103_GLC0')[1][130, 230] == np.nan:
-        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-3 km Storm Relative Helicity Not Avalible in Dataset"
+        f"{year}/{month}/{day}_{hour}00 ⚠️ 0-3 km Storm Relative Helicity Not Available in Dataset"
     if ds_reflect.refd[130, 230] == np.nan:
         f"{year}/{month}/{day}_{hour}00 ⚠️ Composite Reflectivity Not Avalible in Dataset"
 ```
 
-| PR-05  | Format RAP analysis data for RF model
+| PR-06  | Format RAP analysis data for RF model
 |---------|------------| 
 | Priority | High |
 | Sprint | 2 |
@@ -303,7 +364,7 @@ tdef rap_variable_test(ds_raw_file, ds_mean_sea, ds_surface, ds_2m, ds_10m, ds_r
 | User Story   | As a developer of a machine learning model, I need to format the data and variables that I have gathered so I can develop and train my model. |                                                                                                                                       | 
 | Acceptance Criteria/Requirements | |
 | | 1. RAP data fields must be reduced to just the necessary data required for the model|
-| | 2. Data should be formatted into a csv file that can be inputted into the scikit-learn RF framework |
+| | 2. Data should be formatted into a csv file that can be input into the scikit-learn RF framework |
 | Automatic Test | | 
 | | Create a script that reads the csv file and checks if all fields/data are present. If not, generate an error showing what is missing.|
 | Status | ✅ Complete ✅ | 
@@ -317,7 +378,7 @@ def csv_test(df):
         sys.exit('❌ Error. One or more values are missing. Please check csv file to remove any dates with incomplete environmental values.')
 ```
 
-| PR-06  | Create Data Subsets for training, verification, and testing datasets
+| PR-07  | Create Data Subsets for training, verification, and testing datasets
 |---------|------------| 
 | Priority | High |
 | Sprint | 3 |
@@ -326,16 +387,14 @@ def csv_test(df):
 | Acceptance Criteria/Requirements | |
 | | 1. RAP dataset must be split into three separate datasets|
 | | 2. Each individual dataset must be appropriately scaled in terms of size (See the 70/10/20 rule established in class lecture notes) |
-| | 3. Datasets should roughly match overall distribution to confirm legitimacy and avoid biases |
+| | 3. Datasets should roughly match the overall distribution to confirm legitimacy and avoid biases |
 | Status | ✅ Complete ✅ | 
 | Unit Test ||
 ```
-# Split data
-train_data, val_test_data = train_test_split(df, test_size = 0.3, random_state = 988)
-val_data, test_data = train_test_split(val_test_data, test_size = 0.6667, random_state = 988)
+# N/A
 ```
 
-| PR-07  | Train/Validate RF model
+| PR-08  | Train/Validate RF model
 |---------|------------| 
 | Priority | High |
 | Sprint | 3 |
@@ -343,28 +402,15 @@ val_data, test_data = train_test_split(val_test_data, test_size = 0.6667, random
 | User Story   | As a developer of a machine learning model, we need to train the model using the data and variables that I have gathered so I can predict if the Storm Prediction Center will issue a mesoscale discussion for Central Oklahoma. |                                                                                                                                       | 
 | Acceptance Criteria/Requirements | |
 | | 1. RF model framework should use scikit-learn framework|
-| | 2. Model output should be formatted in such a way as new atmospheric and environmental data can be plugged in, and model displays output |
+| | 2. Model output should be formatted in such a way that new atmospheric and environmental data can be plugged in, and the model displays output |
 | Status | ✅ Complete ✅ | 
 | Unit Test ||
 ```
-# Print classification report
-print('Classification report for classifier %s:\n%s\n'
-      % (rf, metrics.classification_report(expected, predicted)))
-
-# Print brier score
-print(f'Brier score: {metrics.brier_score_loss(expected, predicted)}', end = '\n\n')
-
-# Print feature importance precentages
-importances = rf.feature_importances_
-
-indices = np.argsort(importances)[::-1]
-
-for i in range(val_data[feature_list].values.shape[1]):
-    print('%d. (%s) feature %d (%f)' % (i+1, feature_list[indices[i]], indices[i], importances[indices[i]]))
+# N/A
     
 ```
 
-| PR-08  | Test RF Model
+| PR-09  | Test RF Model
 |---------|------------| 
 | Priority | Medium |
 | Sprint | 3 |
@@ -373,24 +419,11 @@ for i in range(val_data[feature_list].values.shape[1]):
 | Acceptance Criteria/Requirements | |
 | | 1. Model output must be such that it can be directly compared to the SPC mesoscale discussions |
 | | 2. Data should contain identical variables as those that were used in model training |
-| | 3. Any figures/statistics generated must be the same format/type between both model output and RAP forecast data (or as similar as reasonably possible) |
+| | 3. Any figures/statistics generated must be in the same format/type between both model output and RAP forecast data (or as similar as reasonably possible) |
 | Automatic Test | | 
 | | Create a script that generates statistical tables/visualizations (if necessary) to compare model outputs and SPC mesoscale discussions |
 | Status | ✅ Complete ✅ | 
 | Unit Test ||
 ```
-# Print classification report
-print("Classification report for classifier %s:\n%s\n"
-      % (rf_opt, metrics.classification_report(expected, predicted)))
-
-# Print brier score
-print(f'Brier score: {metrics.brier_score_loss(expected, predicted)}', end = '\n\n')
-
-# Print feature importance precentages
-importances = rf_opt.feature_importances_
-
-indices = np.argsort(importances)[::-1]
-
-for i in range(val_data[feature_list].values.shape[1]):
-    print("%d. (%s) feature %d (%f)" % (i+1, feature_list[indices[i]], indices[i], importances[indices[i]]))
+# N/A
 ```
